@@ -171,6 +171,9 @@ class ImageViewer:
         else:
             self.direction = "NORMAL"
         self.update()
+    
+    def delete_image(self, event=None):
+        pass
         
 if __name__ == "__main__":
     root = Tk()
