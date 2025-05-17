@@ -64,7 +64,7 @@ class ImageViewer:
             "r" : self.rotate,
             "<Button-4>" : self.prev_image,
             "<Button-5>" : self.next_image,
-            #"<MouseWheel>" : self.on_mouse_wheel,
+            "<MouseWheel>" : self.on_mouse_wheel,
             "<Button-1>" : self.next_image,
             "<Button-2>" : self.rotate,
             "<Double-Button-3>" : lambda event: sys.exit(),
@@ -171,6 +171,14 @@ class ImageViewer:
         else:
             self.direction = "NORMAL"
         self.update()
+        
+    # windows用のマウスホイール用ハンドラ
+    def on_mouse_wheel(self, event):
+        # Windows の場合、event.delta は ±120 の倍数
+        if event.delta > 0:
+            self.prev_image()
+        else:
+            self.next_image()
         
 if __name__ == "__main__":
     root = Tk()
