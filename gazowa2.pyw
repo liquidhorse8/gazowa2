@@ -68,7 +68,6 @@ class ImageViewer:
             "<MouseWheel>" : self.on_mouse_wheel,
             "<Button-1>" : self.next_image,
             "<Button-2>" : self.rotate,
-            "<Button-3>" : self.fullscreen_toggle,
             "<Double-Button-3>" : lambda event: sys.exit(),
         }
         for key, value in keybind_list.items():
