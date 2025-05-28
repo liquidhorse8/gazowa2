@@ -125,9 +125,6 @@ class ImageViewer:
         self.label.image = photo
 
     def next_image(self, event=None):
-        self.image_list = [os.path.join(self.folder, file) for file in os.listdir(self.folder) if file.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif', '.webp'))]
-        self.image_list.sort()
-        
         if not self.image_list:
             return
         if self.current_index < len(self.image_list) - 1:
@@ -137,9 +134,6 @@ class ImageViewer:
         self.update()
 
     def prev_image(self, event=None):
-        self.image_list = [os.path.join(self.folder, file) for file in os.listdir(self.folder) if file.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif', '.webp'))]
-        self.image_list.sort()
-        
         if not self.image_list:
             return
         if self.current_index > 0:
@@ -149,6 +143,8 @@ class ImageViewer:
         self.update()
 
     def update(self):
+        self.image_list = [os.path.join(self.folder, file) for file in os.listdir(self.folder) if file.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif', '.webp'))]
+        self.image_list.sort()
         self.show_image()
 
     def change_fullscreen(self, event=None):
