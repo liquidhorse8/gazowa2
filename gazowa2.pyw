@@ -11,6 +11,7 @@ class ImageViewer:
         self.direction = "NORMAL"
         self.image_list = []
         self.current_index = -1
+        self.folder = ""
 
         self.root = root
         self.root.title("gazowa2")
@@ -67,6 +68,7 @@ class ImageViewer:
             "<MouseWheel>" : self.on_mouse_wheel,
             "<Button-1>" : self.next_image,
             "<Button-2>" : self.rotate,
+            "<Button-3>" : self.fullscreen_toggle,
             "<Double-Button-3>" : lambda event: sys.exit(),
         }
         for key, value in keybind_list.items():
@@ -77,6 +79,7 @@ class ImageViewer:
         self.open_image(folder, False)
 
     def open_image(self, folder, image_name):
+        self.folder = folder #フォルダを記憶
         if folder:
             self.image_list = [os.path.join(folder, file) for file in os.listdir(folder) if file.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif', '.webp'))]
             self.image_list.sort()
