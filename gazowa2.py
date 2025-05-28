@@ -11,6 +11,7 @@ class ImageViewer:
         self.direction = "NORMAL"
         self.image_list = []
         self.current_index = -1
+        self.folder = ""
 
         self.root = root
         self.root.title("gazowa2")
@@ -77,6 +78,7 @@ class ImageViewer:
         self.open_image(folder, False)
 
     def open_image(self, folder, image_name):
+        self.folder = folder #folderを記憶
         if folder:
             self.image_list = [os.path.join(folder, file) for file in os.listdir(folder) if file.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif', '.webp'))]
             self.image_list.sort()
@@ -125,6 +127,9 @@ class ImageViewer:
         self.label.image = photo
 
     def next_image(self, event=None):
+        self.image_list = [os.path.join(self.folder, file) for file in os.listdir(self.folder) if file.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif', '.webp'))]
+        self.image_list.sort()
+
         if not self.image_list:
             return
         if self.current_index < len(self.image_list) - 1:
@@ -134,6 +139,9 @@ class ImageViewer:
         self.update()
 
     def prev_image(self, event=None):
+        self.image_list = [os.path.join(self.folder, file) for file in os.listdir(self.folder) if file.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif', '.webp'))]
+        self.image_list.sort()
+        
         if not self.image_list:
             return
         if self.current_index > 0:
